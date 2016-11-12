@@ -675,5 +675,16 @@ tls_cert_free(struct tls_cert *cert)
 	free(cert);
 }
 
+void tls_get_common_name(struct tls *ctx, char *name, char *matched_name)
+{
+  const char *cnName;
+  X509_NAME *subject;
+  subject = X509_get_subject_name(ctx->ssl_peer_cert);
+  tls_cert_get_dname_string(ctx, subject, NID_commonName, &cnName, 0, UB_COMMON_NAME, "commonName");
+
+  strcpy(matched_name, cnName);
+  free(cnName);
+  return;
+}
 #endif /* USUAL_LIBSSL_FOR_TLS */
 

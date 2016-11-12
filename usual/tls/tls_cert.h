@@ -96,6 +96,7 @@ struct tls_cert {
 
 int tls_get_peer_cert(struct tls *ctx, struct tls_cert **cert_p, const char *fingerprint_algo);
 void tls_cert_free(struct tls_cert *cert);
+void tls_get_common_name(struct tls *ctx, char *name, char *matched_name);
 
 #ifdef TLS_CERT_INTERNAL_FUNCS
 int tls_parse_cert(struct tls *ctx, struct tls_cert **cert_p,
