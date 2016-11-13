@@ -27,7 +27,6 @@ static int tls_match_name(const char *cert_name, const char *name);
 static int tls_check_subject_altname(struct tls *ctx, X509 *cert,
     const char *name);
 static int tls_check_common_name(struct tls *ctx, X509 *cert, const char *name);
-static int tls_get_common_name(struct tls *ctx, X509 *cert, const char *name);
 
 static int
 tls_match_name(const char *cert_name, const char *name)
@@ -256,11 +255,6 @@ tls_check_name(struct tls *ctx, X509 *cert, const char *name)
 		return rv;
 
 	return tls_check_common_name(ctx, cert, name);
-}
-
-static int tls_get_common_name(struct tls *ctx, X509 *cert, const char *name)
-{
-  return 0;
 }
 
 #endif /* USUAL_LIBSSL_FOR_TLS */
